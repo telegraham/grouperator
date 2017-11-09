@@ -1,3 +1,5 @@
+start_time = Time.now
+
 require_relative 'models/boot'
 require_relative 'models/pitch'
 require_relative 'models/vote'
@@ -121,7 +123,11 @@ blah = by_group_size.keys.map do |group_size|
 
 end
 
-puts (blah.flatten.sort_by do |assignment| 
+sorted = (blah.flatten.sort_by do |assignment| 
   assignment.score_minimum_downside
 end).to_a
 
+puts sorted
+
+
+puts "considered #{ sorted.length } possibilities in #{ Time.now - start_time } seconds"
